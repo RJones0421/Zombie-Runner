@@ -1,21 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class WeaponZoom : MonoBehaviour
 {
 
-    [SerializeField] float zoomedOutFOV = 30f;
-    [SerializeField] float zoomedInFOV = 60f;
+    [SerializeField] float zoomedOutFOV = 60f;
+    [SerializeField] float zoomedInFOV = 30f;
+    [SerializeField] float zoomedOutSensitivity = 2f;
+    [SerializeField] float zoomedInSensitivity = 1f;
 
-    Camera FPCamera;
+    [SerializeField] RigidbodyFirstPersonController player = null;
+    [SerializeField] Camera FPCamera = null;
     bool isZoomedIn = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        FPCamera = GetComponentInChildren<Camera>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -32,11 +30,15 @@ public class WeaponZoom : MonoBehaviour
 
         if (isZoomedIn)
         {
-            FPCamera.fieldOfView = zoomedInFOV;
+            FPCamera.fieldOfView = zoomedOutFOV;
+            player.mouseLook.XSensitivity = zoomedOutSensitivity;
+            player.mouseLook.YSensitivity = zoomedOutSensitivity;
         }
         else
         {
-            FPCamera.fieldOfView = zoomedOutFOV;
+            FPCamera.fieldOfView = zoomedInFOV;
+            player.mouseLook.XSensitivity = zoomedInSensitivity;
+            player.mouseLook.YSensitivity = zoomedInSensitivity;
         }
     }
 }

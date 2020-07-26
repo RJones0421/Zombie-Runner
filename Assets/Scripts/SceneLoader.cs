@@ -7,12 +7,12 @@ public class SceneLoader : MonoBehaviour
 {
     public void ReloadGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
     }
 
-    public void QuitGame()
+    public void BackToMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 }
