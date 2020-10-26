@@ -51,5 +51,9 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
         isGamePaused = false;
+
+        FindObjectOfType<WeaponSwitcher>().enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
